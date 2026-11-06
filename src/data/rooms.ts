@@ -1,0 +1,83 @@
+import type { Room } from '@/types';
+
+export const rooms: Room[] = [
+  {
+    id: 'r1',
+    name: 'Newton Lecture Hall',
+    code: 'SW-101',
+    building: 'Science Wing',
+    capacity: 120,
+    equipment: ['projector', 'microphone', 'whiteboard'],
+    blocked: false,
+    bookings: [
+      { start: 480, end: 570, label: 'PHY 201 — Classical Mechanics' },
+      { start: 600, end: 690, label: 'PHY 304 — Quantum Theory' },
+      { start: 780, end: 870, label: 'AST 110 — Intro Astronomy' },
+      { start: 900, end: 990, label: 'PHY 220 — Thermodynamics' },
+    ],
+  },
+  {
+    id: 'r2',
+    name: 'Turing Computer Lab',
+    code: 'EB-205',
+    building: 'Engineering Block',
+    capacity: 40,
+    equipment: ['projector', 'computers', 'whiteboard'],
+    blocked: false,
+    bookings: [
+      { start: 540, end: 660, label: 'CS 150 — Programming I' },
+      { start: 690, end: 780, label: 'CS 330 — Algorithms' },
+      { start: 840, end: 960, label: 'CS 410 — Machine Learning' },
+    ],
+  },
+  {
+    id: 'r3',
+    name: 'Curie Chemistry Lab',
+    code: 'SW-302',
+    building: 'Science Wing',
+    capacity: 30,
+    equipment: ['fume hood', 'lab benches'],
+    blocked: true,
+    blockedReason: 'Maintenance — fume hood repair scheduled today.',
+    bookings: [],
+  },
+  {
+    id: 'r4',
+    name: 'Plato Seminar Room',
+    code: 'HH-110',
+    building: 'Humanities Hall',
+    capacity: 25,
+    equipment: ['whiteboard', 'projector'],
+    blocked: false,
+    bookings: [
+      { start: 660, end: 750, label: 'PHI 210 — Ethics' },
+      { start: 840, end: 930, label: 'HIS 180 — Modern Europe' },
+    ],
+  },
+  {
+    id: 'r5',
+    name: 'Apollo Auditorium',
+    code: 'BC-A1',
+    building: 'Business Center',
+    capacity: 300,
+    equipment: ['projector', 'microphone'],
+    blocked: false,
+    bookings: [
+      { start: 540, end: 720, label: 'BUS 500 — Guest Lecture Series' },
+    ],
+  },
+  {
+    id: 'r6',
+    name: 'Da Vinci Design Studio',
+    code: 'EB-330',
+    building: 'Engineering Block',
+    capacity: 28,
+    equipment: ['whiteboard', 'computers', 'projector'],
+    blocked: false,
+    bookings: [
+      { start: 480, end: 600, label: 'ME 150 — Engineering Graphics' },
+      { start: 720, end: 840, label: 'ME 290 — Product Design' },
+      { start: 870, end: 990, label: 'ME 380 — Capstone Studio' },
+    ],
+  },
+];
