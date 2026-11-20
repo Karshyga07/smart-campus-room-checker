@@ -27,11 +27,14 @@ const quickPresets = [
 export default function BookingForm({ rooms, form, setForm, result, onCheck }: Props) {
   const selectedRoom = rooms.find((r) => r.id === form.roomId) ?? null;
   const duration = form.end - form.start;
-  const startAfterCurrent = form.start >= timeToMinutes(form.currentTime);
+  const currentMin = timeToMinutes(form.currentTime);
+  const startAfterCurrent = Number.isNaN(currentMin) || form.start >= currentMin;
   const validRange = form.start >= 0 && form.end <= 1440 && form.start < form.end;
 
   const updateStart = (raw: number) => {
-    setForm({ ...form, start: clamp(raw, 0, 1440), end: Math.max(raw + 30, form.end) });
+    const nextStart = clamp(raw, 0, 1440);
+    const nextEnd = clamp(Math.max(nextStart + 30, form.end), 0, 1440);
+    setForm({ ...form, start: nextStart, end: nextEnd });
   };
 
   return (
@@ -133,7 +136,7 @@ export default function BookingForm({ rooms, form, setForm, result, onCheck }: P
             <button
               key={p.label}
               type="button"
-              onClick={() => setForm({ ...form, end: form.start + p.duration })}
+              onClick={() => setForm({ ...form, end: clamp(form.start + p.duration, 0, 1440) })}
               className="px-2 py-1 text-[10px] rounded-md border border-gray-200 text-gray-500 hover:border-sky-300 hover:text-sky-600 transition-colors"
             >
               {p.label}

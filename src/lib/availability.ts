@@ -21,7 +21,11 @@ export function clamp(v: number, min: number, max: number): number {
 }
 
 export function timeToMinutes(time: string): number {
-  const [h, m] = time.split(':').map(Number);
-  if (isNaN(h) || isNaN(m)) return NaN;
+  const match = /^(\d{1,2}):(\d{2})$/.exec(time.trim());
+  if (!match) return NaN;
+  const h = Number(match[1]);
+  const m = Number(match[2]);
+  if (Number.isNaN(h) || Number.isNaN(m) || m < 0 || m > 59) return NaN;
+  if (h < 0 || h > 24 || (h === 24 && m > 0)) return NaN;
   return h * 60 + m;
 }
